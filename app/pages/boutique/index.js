@@ -1,4 +1,4 @@
-import DefaultLayaout from '../../components/DefaultLayout'
+import DefaultLayout from '../../components/DefaultLayout'
 import { withStyles, Container, Grid, Typography, List, ListItem, ListItemText } from '@material-ui/core'
 import ProductsList from '../../components/boutique/ProductsList'
 
@@ -182,7 +182,7 @@ const productsDatas = [
 const Boutique = props => {
   const {classes} = props
   return (
-    <DefaultLayaout>
+    <DefaultLayout>
       <Container maxWidth="lg" className={classes.root}>
 
           <Grid container justify={'center'}>
@@ -223,7 +223,7 @@ const Boutique = props => {
           </Grid>
 
       </Container>
-  </DefaultLayaout>
+  </DefaultLayout>
   )
 }
 export default withStyles(useStyles)(Boutique)

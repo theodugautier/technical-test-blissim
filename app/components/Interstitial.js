@@ -1,10 +1,11 @@
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import {withStyles, Typography, Button, Grid, Card, IconButton, CardMedia} from '@material-ui/core'
 import {useContext} from 'react'
+import {useEffect, useState} from "react";
 import GlobalContext from '../state/global-context';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {useEffect, useState} from "react";
+import Link from 'next/link'
 
 const useStyles = theme => ({
     interstitial: {
@@ -109,7 +110,9 @@ const Interstitial = props => {
                 </Grid>
 
                 <Typography gutterBottom>Prix total : {totalPrice} {totalPrice > 1 ? "euros" : "euro"}</Typography>
-                <Button color="primary" variant="contained">Commander</Button>
+                <Link href="/subscription">
+                    <Button color="primary" variant="contained">Commander</Button>
+                </Link>
             </div>
         </SwipeableDrawer>
     )

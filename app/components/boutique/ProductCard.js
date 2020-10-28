@@ -9,8 +9,9 @@ import {
     IconButton
 } from '@material-ui/core'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import {useContext} from "react";
+import { useContext } from "react";
 import GlobalContext from "../../state/global-context";
+import Link from 'next/link'
 
 const useStyles = theme => ({
     root: {
@@ -25,7 +26,7 @@ const useStyles = theme => ({
     },
     thumbnailContainer: {
         padding: theme.spacing(2),
-        textAlign: "cetner",
+        textAlign: "center",
     },
     thumbnail: {
         maxHeight: '170px',
@@ -34,7 +35,7 @@ const useStyles = theme => ({
     },
     name: {
         fontSize: '1rem',
-    }
+    },
 });
 
 const ProductCard = (props) => {
@@ -57,9 +58,11 @@ const ProductCard = (props) => {
                         title="Contemplative Reptile"
                     />
                 </div>
-                <Typography gutterBottom component="h2" className={classes.name}>
-                    {product.title}
-                </Typography>
+                <Link href={`/boutique/${product.id}`} passhref>
+                    <Typography gutterBottom component="h2" className={classes.name}>
+                        {product.title}
+                    </Typography>
+                </Link>
                 <Typography variant="body2" color="textSecondary" component="p">
                     {product.desc}
                 </Typography>

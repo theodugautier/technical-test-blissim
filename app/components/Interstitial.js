@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import GlobalContext from '../state/global-context';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Link from 'next/link'
 import { useEffect, useState } from "react";
 
 const useStyles = theme => ({
@@ -107,9 +108,10 @@ const Interstitial = props => {
             </Grid>
           ))}
         </Grid>
-
         <Typography gutterBottom>Prix total : {totalPrice} {totalPrice > 1 ? "euros" : "euro"}</Typography>
-        <Button color="primary" variant="contained">Commander</Button>
+        <Link href="/subscription">
+          <Button color="primary" variant="contained">Commander</Button>
+        </Link>
       </div>
     </SwipeableDrawer>
   )

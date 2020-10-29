@@ -1,28 +1,39 @@
 import { useRouter } from "next/router";
 import DefaultLayout from '../../components/DefaultLayout'
-import { withStyles, Container, CardMedia, Grid, Typography } from '@material-ui/core'
+import GlobalContext from "../../state/global-context";
+import { withStyles, Button, Container, CardMedia, Grid, Typography } from '@material-ui/core'
+import { useContext } from "react";
 
 const useStyles = theme => ({
-  root: {marginBottom: theme.spacing(3)},
   h1: {
-      margin: theme.spacing(5, 0)
-  },
-  filterTitle: {
-      backgroundColor: theme.palette.primary,
-      color: theme.palette.light
+    margin: theme.spacing(5, 0)
   },
   filterListItem: {
-      paddingLeft: 0,
+    paddingLeft: 0,
   },
   image: {
-    width: '100%',
+    width: '70%',
+    marginTop: "40px",
     height: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
+  price: {
+    color: 'white',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    padding: "10px 30px",
+    marginTop: "20px",
+    display: 'inline-block'
+  }
 });
 
 const BoutiqueShow = (props) => {
   const { classes, product } = props
+  const context = useContext(GlobalContext);
+
+  const handleAddToCart = (e, product) => {
+    context.addProductToCart(product, context.pushObject('open_interstitial', true))
+  }
 
   const router = useRouter();
 
@@ -30,19 +41,23 @@ const BoutiqueShow = (props) => {
     <DefaultLayout>
       <Container maxWidth="lg" className={classes.root}>
         <Grid container justify={'center'}>
-            <Grid item xs={8} >
-                <Typography variant="h4" component="h1" className={classes.h1}>{product.title}</Typography>
-                <Typography variant="p" component="body1">{product.description}</Typography>
-            </Grid>
-            <Grid item xs={4} >
-              <CardMedia
-                component="img"
-                alt={product.title}
-                image={product.image}
-                className={classes.image}
-                title="Contemplative Reptile"
-              />
-            </Grid>
+          <Grid item xs={4} >
+            <CardMedia
+              component="img"
+              alt={product.title}
+              image={product.image}
+              className={classes.image}
+              title="Contemplative Reptile"
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="h4" component="h1" className={classes.h1}>{product.title}</Typography>
+            <Typography variant="body1" component="p" className="red">{product.description}</Typography>
+            <Typography variant="h3" component="span" className={classes.price}>{product.price} $</Typography>
+            <Button variant="contained" color="secondary" onClick={e => handleAddToCart(e, product)} component="a">
+              Acheter
+            </Button>
+          </Grid>
         </Grid>
       </Container>
 
@@ -53,8 +68,6 @@ const BoutiqueShow = (props) => {
 export async function getStaticProps({ params }) {
   const res = await fetch(`https://fakestoreapi.com/products/${params.id}`)
   const product = await res.json()
-
-  console.log(product)
 
   return {
     props: {

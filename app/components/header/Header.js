@@ -10,7 +10,7 @@ const useStyles = theme => ({
     position: "fixed",
     width: "100%",
     top: '0px',
-    zIndex: "99999"
+    zIndex: "9"
   },
   toolbar: {
     padding: 0,

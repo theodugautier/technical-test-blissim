@@ -1,13 +1,14 @@
 <?php
-    include_once('user/user.php');
+  include_once('user/user.php');
 
-    header("Access-Control-Allow-Origin: http://localhost:3000");
-    header('Access-Control-Allow-Headers: Content-Type; Access-Control-Allow-Origin; Set-Cookie; ');
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Credentials: true');
-    header('access-control-expose-headers: Set-Cookie');
-    session_start();
-    
+  header("Access-Control-Allow-Origin: http://localhost:3000");
+  header('Access-Control-Allow-Headers: Content-Type; Access-Control-Allow-Origin; Set-Cookie; ');
+  header('Content-Type: application/json');
+  header('Access-Control-Allow-Credentials: true');
+  header('access-control-expose-headers: Set-Cookie');
+  session_start();
+  
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rest_json = file_get_contents("php://input");
     $_POST = json_decode($rest_json, true);
 
@@ -41,4 +42,5 @@
           "message" => "There seems to have been an error."
         ]
       );
-    }
+    } 
+  }

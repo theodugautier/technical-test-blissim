@@ -1,10 +1,10 @@
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { withStyles, Typography, Button, Grid, Card, IconButton, CardMedia } from '@material-ui/core'
-import { useContext } from 'react'
 import GlobalContext from '../state/global-context';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useEffect, useState } from "react";
+import { useEffect, useContext, useState } from "react";
+import { useRouter } from 'next/router';
 
 const useStyles = theme => ({
   swipeableDrawer: {
@@ -41,6 +41,7 @@ const Interstitial = props => {
   const context = useContext(GlobalContext);
   const cart = context.cart
   const [totalPrice, setTotalPrice] = useState(0)
+  const router = useRouter()
 
   useEffect(() => {
     getTotalPrice()
@@ -56,6 +57,11 @@ const Interstitial = props => {
       totalPrice += p.price
     })
     return setTotalPrice(totalPrice)
+  }
+
+  const handleClickCommand = () => {
+    context.pushObject('open_interstitial', false)
+    router.push(`/commande`)
   }
 
   return (
@@ -107,9 +113,8 @@ const Interstitial = props => {
             </Grid>
           ))}
         </Grid>
-
         <Typography gutterBottom>Prix total : {totalPrice} {totalPrice > 1 ? "euros" : "euro"}</Typography>
-        <Button color="primary" variant="contained">Commander</Button>
+        <Button color="primary" variant="contained" onClick={() => handleClickCommand()}>Commander</Button>
       </div>
     </SwipeableDrawer>
   )

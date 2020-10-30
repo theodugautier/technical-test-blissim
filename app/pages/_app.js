@@ -1,12 +1,16 @@
 import '../styles/globals.css'
-import {GlobalProvider} from "../state/global-context";
+import { GlobalProvider } from "../state/global-context";
+import { ThemeProvider } from "styled-components";
+import theme from "../theme/theme"
 
 function MyApp({ Component, pageProps }) {
   return (
-      <GlobalProvider>
+    <GlobalProvider>
+      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-      </GlobalProvider>
-      )
+      </ThemeProvider>
+    </GlobalProvider>
+  )
 }
 
 export default MyApp

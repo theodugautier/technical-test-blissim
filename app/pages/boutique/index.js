@@ -3,6 +3,7 @@ import DefaultLayout from '../../components/DefaultLayout'
 import { withStyles, Container, Grid, Typography, List, ListItem, ListItemText } from '@material-ui/core'
 import ProductsList from '../../components/boutique/ProductsList'
 import styled from 'styled-components'
+import Head from 'next/head'
 
 const useStyles = theme => ({
   root: { marginBottom: theme.spacing(3) },
@@ -46,6 +47,11 @@ const Boutique = ({ classes, productsList }) => {
 
   return (
     <DefaultLayout>
+      <Head>
+        <title>Boutique - Super Shop</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Retrouver tous nos nos produits en vente" />
+      </Head>
       <Container maxWidth="lg" className={classes.root}>
 
         <Grid container justify={'center'}>

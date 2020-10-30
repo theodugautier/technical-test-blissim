@@ -3,6 +3,7 @@ import DefaultLayout from '../../components/DefaultLayout'
 import GlobalContext from "../../state/global-context";
 import { withStyles, Button, Container, CardMedia, Grid, Typography } from '@material-ui/core'
 import { useContext } from "react";
+import Head from 'next/head'
 
 const useStyles = theme => ({
   h1: {
@@ -39,6 +40,11 @@ const BoutiqueShow = (props) => {
 
   return (
     <DefaultLayout>
+      <Head>
+        <title>{product.title} - Super Shop</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={`${product.title} est en vente sur supershop comme bien d'autres produits`} />
+      </Head>
       <Container maxWidth="lg" className={classes.root}>
         <Grid container justify={'center'}>
           <Grid item xs={4} >

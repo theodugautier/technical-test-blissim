@@ -1,6 +1,7 @@
 import DefaultLayout from '../components/DefaultLayout'
 import { withStyles, Button, Container, Grid, Typography } from '@material-ui/core'
 import Link from 'next/link'
+import Head from 'next/head'
 
 const useStyles = theme => ({
   container: {
@@ -13,6 +14,11 @@ const Home = props => {
   const { classes } = props
   return (
     <DefaultLayout>
+      <Head>
+        <title>Accueil - Super Shop</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Bienvenue sur le site super shop | produits" />
+      </Head>
       <Container maxWidth="sm" className={classes.container}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
           SuperShop
